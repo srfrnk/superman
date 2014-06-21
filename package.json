@@ -1,0 +1,32 @@
+{
+	"name": "superman",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "*",
+		"ejs": "*",
+		"stylus": "*",
+		"mongodb": "*",
+		"passport": "*",
+		"passport-http": "*",
+		"passport-local": "*",
+		"requirejs": "*",
+		"mongoose": "*",
+		"linq": "*",
+		"q": "*",
+		"jeet": "*",
+		"express.io": "*",
+		"tedious": "*",
+		"connect-busboy": "*"
+	},
+	"engines": {
+		"node": "1.10.x"
+	},
+	"Sili": {
+		"initVersion": "0.0.22",
+		"currentVersion": "0.0.22"
+	}
+}

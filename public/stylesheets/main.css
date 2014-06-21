@@ -1,0 +1,29 @@
+#main-page .action {
+  *zoom: 1;
+  float: left;
+  display: inline;
+  clear: none;
+  text-align: inherit;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 3%;
+  border: 1px solid #000;
+  padding: 20px;
+  margin: 20px;
+  font-size: 30px;
+  border-radius: 10px;
+  color: #000;
+}
+#main-page .action:before,
+#main-page .action:after {
+  content: '';
+  display: table;
+}
+#main-page .action:after {
+  clear: both;
+}
+#main-page .action:last-child {
+  margin-right: 0%;
+}
