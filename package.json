@@ -20,7 +20,8 @@
 		"jeet": "*",
 		"express.io": "*",
 		"tedious": "*",
-		"connect-busboy": "*"
+		"connect-busboy": "*",
+        "http-proxy":"*"
 	},
 	"engines": {
 		"node": "1.10.x"
