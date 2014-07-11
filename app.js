@@ -2,8 +2,8 @@ var requirejs = require("requirejs");
 
 requirejs.config({ deps: ["app"]});
 
-requirejs.define("app", ["models/ruleMatchers","models/ruleActions","routes/index", "routes/login", "routes/view", "routes/data", "routes/proxy"/*server-route:,"routes/<%=nameCamel%>"*/, "middleware/proxyLog"/*server-middleware:,"middleware/<%=nameCamel%>"*/, "models/mongooseHelper"],
-    function (ruleMatchers,ruleActions,indexRoute, loginRoute, viewRoute, dataRoute, proxyRoute/*server-route:,<%=nameCamel%>Route*/, proxyLog/*server-middleware:,<%=nameCamel%>*/) {
+requirejs.define("app", ["models/ruleMatchers", "models/ruleActions", "routes/index", "routes/login", "routes/view", "routes/data", "routes/proxy"/*server-route:,"routes/<%=nameCamel%>"*/, "middleware/proxyLog"/*server-middleware:,"middleware/<%=nameCamel%>"*/, "models/mongooseHelper"],
+    function (ruleMatchers, ruleActions, indexRoute, loginRoute, viewRoute, dataRoute, proxyRoute/*server-route:,<%=nameCamel%>Route*/, proxyLog/*server-middleware:,<%=nameCamel%>*/) {
         /**
          * Module dependencies.
          */
@@ -14,6 +14,7 @@ requirejs.define("app", ["models/ruleMatchers","models/ruleActions","routes/inde
         var stylus = require('stylus');
         var util = require('util');
         var busboy = require('connect-busboy');
+        var repl = require("repl");
 
         var packageJson = require("./package.json");
 
@@ -49,13 +50,13 @@ requirejs.define("app", ["models/ruleMatchers","models/ruleActions","routes/inde
         var httpProxy = require('http-proxy');
         var proxy = httpProxy.createProxyServer();
 
-        var proxySettingsFile=require("./proxySettings.json");
+        var settingsFile = require("./settings.json");
 
-        app.set("proxy",{
-            proxy:proxy,
-            proxySettings:proxySettingsFile,
-            ruleMatchers:ruleMatchers,
-            ruleActions:ruleActions
+        app.set("superman", {
+            settings: settingsFile,
+            proxy: proxy,
+            ruleMatchers: ruleMatchers,
+            ruleActions: ruleActions
         });
 
 
@@ -86,5 +87,23 @@ requirejs.define("app", ["models/ruleMatchers","models/ruleActions","routes/inde
 
         app.listen(app.get("port"), function () {
             console.log("Express server listening on port " + app.get("port"));
+
+            setTimeout(function () {
+                console.log("Superman for the rescue!");
+                console.log("Type 'sm' to see my insides.");
+                console.log("Type '.exit' to exit.");
+                var r = repl.start({
+                    prompt: "Superman >> ",
+                    input: process.stdin,
+                    output: process.stdout
+                });
+
+                r.on('exit', function () {
+                    console.log("Superman out!");
+                    process.exit();
+                });
+
+                r.context.sm = app.get("superman");
+            }, 1000);
         });
     });

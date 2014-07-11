@@ -5,7 +5,8 @@
             "matcher": "url-regex",
             "url": ".*res.cloudinary.com.*",
             "action": "static-file",
-            "filePath": "public/images/placeholder-img.jpg"
+            "filePath": "public/images/placeholder-img.jpg",
+            "description":"Block cloudinary images loading from cloud to prevent overuse while debugging without caches...."
         },
         {
             "priority": 10000,

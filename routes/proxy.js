@@ -1,16 +1,19 @@
-require("requirejs").define("routes/proxy", [], function () {
+require("requirejs").define("routes/proxy", ["linq"], function (Enum) {
     var path = require('path');
 
     return function (req, res, next) {
-        var proxyInfo = req.application.get("proxy");
-        var proxy = proxyInfo.proxy;
-        var proxySettings = proxyInfo.proxySettings;
-        var ruleMatchers = proxyInfo.ruleMatchers;
-        var ruleActions = proxyInfo.ruleActions;
+        var superman = req.application.get("superman");
+        var proxy = superman.proxy;
+        var settings = superman.settings;
+        var ruleMatchers = superman.ruleMatchers;
+        var ruleActions = superman.ruleActions;
+        var rules=Enum.from(settings.rules).orderBy(function(rule) {
+            return rule.priority;
+        }).toArray();
 
         function matchRule(rule, req) {
             var matcher = ruleMatchers[rule.matcher];
-            return  !!matcher && matcher(rule, req,proxyInfo);
+            return  !!matcher && matcher(rule, req,superman);
         }
 
         function actOnRule(rule, req, res) {
@@ -20,14 +23,24 @@ require("requirejs").define("routes/proxy", [], function () {
                 return "";
             }
             else {
-                return action(rule,req,res,proxyInfo);
+                return action(rule,req,res,superman);
             }
         }
 
         try {
-            proxySettings.rules.some(function (rule) {
+            rules.some(function (rule) {
                 if (matchRule(rule, req)) {
-                    res.proxyState=[actOnRule(rule,req,res),rule.description].join("-");
+                    var actionResult = actOnRule(rule, req, res);
+                    var proxyState=[];
+                    if(!!actionResult)
+                    {
+                        proxyState.push(actionResult);
+                    }
+                    if(!!rule.description)
+                    {
+                        proxyState.push(rule.description);
+                    }
+                    res.proxyState=proxyState.join(" - ");
                     return true;
                 }
                 else {
