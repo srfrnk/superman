@@ -1,0 +1,16 @@
+{
+    "rules": [
+        {
+            "priority": 1,
+            "matcher": "url-regex",
+            "url": ".*res.cloudinary.com.*",
+            "action": "static-file",
+            "filePath": "public/images/placeholder-img.jpg"
+        },
+        {
+            "priority": 10000,
+            "matcher": "match-all",
+            "action": "pass-through"
+        }
+    ]
+}
