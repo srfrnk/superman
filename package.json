@@ -27,7 +27,7 @@
 		"node": "1.10.x"
 	},
 	"Sili": {
-		"initVersion": "0.0.22",
-		"currentVersion": "0.0.22"
+		"initVersion": "0.0.26",
+		"currentVersion": "0.0.26"
 	}
 }
