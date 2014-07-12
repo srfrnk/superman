@@ -7,7 +7,9 @@ require("requirejs").define("routes/proxy", ["linq"], function (Enum) {
         var settings = superman.settings;
         var ruleMatchers = superman.ruleMatchers;
         var ruleActions = superman.ruleActions;
-        var rules=Enum.from(settings.rules).orderBy(function(rule) {
+        var rules=Enum.from(settings.rules).where(function (rule) {
+            return rule.active;
+        }).orderBy(function(rule) {
             return rule.priority;
         }).toArray();
 

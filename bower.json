@@ -27,7 +27,10 @@
 		"angular-google-chart": "*",
 		"ng-socket": "*",
 		"linqjs-amd": "*",
-		"bootstrap": "*"
+		"bootstrap": "*",
+        "angular-contenteditable":"*",
+        "jquery-ui":"1.10.3",
+        "angular-ui-sortable":"*"
 	},
 	"resolutions": {
 		"angular-translate": "*"

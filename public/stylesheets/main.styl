@@ -1,12 +1,54 @@
-@import jeet
+@import flex;
 
 #main-page
-	.action
-		column(3/3)
-		
-		border 1px solid black
-		padding 20px
-		margin 20px
-		font-size 30px;
-		border-radius 10px
-		color black
+  margin 20px
+  fx-column()
+  .rule
+    fx-item(grow:1)
+    fx-column()
+    margin 10px
+    border 1px black solid
+    border-radius 5px
+    padding 5px
+    .general
+      fx-item()
+      fx-row(justify:flex-start)
+      margin 5px
+      .active
+        fx-item()
+        margin 5px
+      .description
+        fx-item(grow:1)
+        margin 5px
+    .matcher
+      fx-item()
+      fx-row(justify:flex-start)
+      margin 5px
+      .matcherSelect
+        margin 5px
+      > div
+        fx-item(grow:1)
+        fx-row()
+        .setting
+          fx-item(grow:1)
+          fx-row(align-items:center)
+          margin 5px
+          input
+            fx-item(grow:1)
+            margin 0 5px
+    .action
+      fx-item()
+      fx-row(justify:flex-start)
+      margin 5px
+      .actionSelect
+        margin 5px
+      > div
+        fx-item(grow:1)
+        fx-row()
+        .setting
+          fx-item(grow:1)
+          fx-row(align-items:center)
+          margin 5px
+          input
+            fx-item(grow:1)
+            margin 0 5px

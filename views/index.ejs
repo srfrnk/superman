@@ -13,6 +13,7 @@
 	
     <script type="text/javascript" src="<%=resourceRoot%>/requirejs/require.js"></script>
     <script type="text/javascript" src="<%=resourceRoot%>/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="<%=resourceRoot%>/jquery-ui/ui/jquery-ui.js"></script>
     <script type="text/javascript" src="<%=resourceRoot%>/angular/angular.min.js"></script>
     <script type="text/javascript" src="<%=resourceRoot%>/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="<%=resourceRoot%>/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -23,6 +24,8 @@
     <script type="text/javascript" src="<%=resourceRoot%>/angularjs-modal-service/src/createDialog.js"></script>
     <script type="text/javascript" src="<%=resourceRoot%>/angular-google-chart/ng-google-chart.js"></script>
 	<script type="text/javascript" src="<%=resourceRoot%>/ng-socket/ngSocket.js"></script>
+	<script type="text/javascript" src="<%=resourceRoot%>/angular-contenteditable/angular-contenteditable.js"></script>
+	<script type="text/javascript" src="<%=resourceRoot%>/angular-ui-sortable/sortable.min.js"></script>
 
     <script type="application/javascript">
         var __webApp_ResourceVersion="<%=resourceVersion%>";
@@ -32,12 +35,6 @@
 </head>
 <body>
 <div class="page ng-cloak">
-    <div class="menu">
-        <ul>
-            <li><a ui-sref="main">{{"headerMain"|translate}}</a></li>
-            <li><a ui-sref="other">{{"headerOther"|translate}}</a></li>
-        </ul>
-    </div>
     <div class="content" ui-view></div>
 </div>
 </body>

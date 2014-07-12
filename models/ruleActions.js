@@ -3,7 +3,7 @@ require("requirejs").define("models/ruleActions", ["models/mongooseHelper"], fun
 
     return {
         "static-file": function (rule, req, res,proxyInfo) {
-            var filePath = path.join(req.application.get("__dirname"), 'public/images/placeholder-img.jpg');
+            var filePath = path.join(req.application.get("__dirname"), rule.filePath);
             res.sendfile(filePath);
             return "Static-File";
         },

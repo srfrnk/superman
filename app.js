@@ -2,8 +2,8 @@ var requirejs = require("requirejs");
 
 requirejs.config({ deps: ["app"]});
 
-requirejs.define("app", ["models/ruleMatchers", "models/ruleActions", "routes/index", "routes/login", "routes/view", "routes/data", "routes/proxy"/*server-route:,"routes/<%=nameCamel%>"*/, "middleware/proxyLog"/*server-middleware:,"middleware/<%=nameCamel%>"*/, "models/mongooseHelper"],
-    function (ruleMatchers, ruleActions, indexRoute, loginRoute, viewRoute, dataRoute, proxyRoute/*server-route:,<%=nameCamel%>Route*/, proxyLog/*server-middleware:,<%=nameCamel%>*/) {
+requirejs.define("app", ["models/ruleMatchers", "models/ruleActions", "routes/index", "routes/login", "routes/view", "routes/data", "routes/proxy", "routes/getSettings", "routes/setSettings"/*server-route:,"routes/<%=nameCamel%>"*/, "middleware/proxyLog"/*server-middleware:,"middleware/<%=nameCamel%>"*/, "models/mongooseHelper"],
+    function (ruleMatchers, ruleActions, indexRoute, loginRoute, viewRoute, dataRoute, proxyRoute, getSettingsRoute, setSettingsRoute/*server-route:,<%=nameCamel%>Route*/, proxyLog/*server-middleware:,<%=nameCamel%>*/) {
         /**
          * Module dependencies.
          */
@@ -78,11 +78,12 @@ requirejs.define("app", ["models/ruleMatchers", "models/ruleActions", "routes/in
 
         app.get("/superman/" + packageJson.version + "/view/:name", viewRoute);
         app.all("/superman/" + packageJson.version + "/data/:action", dataRoute);
+        app.all("/superman/getSettings", getSettingsRoute);
+        app.all("/superman/setSettings", setSettingsRoute);
         app.get("/superman", indexRoute);
         app.get("/superman/*", indexRoute);
 
         app.all("/*", proxyLog, proxyRoute);
-
         /*server-route:app.all("set_url_here", <%=nameCamel%>Route);<%='\n\t'%>*/
 
         app.listen(app.get("port"), function () {

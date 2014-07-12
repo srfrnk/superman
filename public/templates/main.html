@@ -1,0 +1,40 @@
+<div id="main-page">
+    <div class="cmds">
+        <button ng-click="save()">Save</button>
+        <button ng-click="add()">Add New...</button>
+    </div>
+    <div class="rules" ui-sortable ng-model="settings.rules">
+        <div class="rule" ng-repeat="rule in settings.rules" >
+            <div class="general">
+                <div class="active"><input type="checkbox" ng-model="rule.active"/></div>
+                <input type="text" class="description" ng-model="rule.description"/>
+                <button class="delete" ng-click="delete($index)">X</button>
+            </div>
+            <div ng-switch="rule.matcher" class="matcher">
+                <select class="matcherSelect" ng-model="rule.matcher">
+                    <option value="url-regex">Match Url Regex</option>
+                    <option value="url-string">Match Url String</option>
+                    <option value="match-all">Match All Requests</option>
+                </select>
+
+                <div ng-switch-when="url-regex">
+                    <div class="setting"><span>Url:</span><input type="text" ng-model="rule.url"/></div>
+                </div>
+                <div ng-switch-when="url-string">
+                    <div class="setting"><span>Url:</span><input type="text" ng-model="rule.url"/></div>
+                </div>
+                <div ng-switch-when="match-all"></div>
+            </div>
+            <div ng-switch="rule.action" class="action">
+                <select class="actionSelect" ng-model="rule.action">
+                    <option value="static-file">Return Static File</option>
+                    <option value="pass-through">Pass-Through Proxy</option>
+                </select>
+                <div ng-switch-when="static-file">
+                    <div class="setting"><span>File Path:</span><input type="text" ng-model="rule.filePath"/></div>
+                </div>
+                <div ng-switch-when="pass-through"></div>
+            </div>
+        </div>
+    </div>
+</div>
