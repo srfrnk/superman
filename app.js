@@ -35,8 +35,8 @@ requirejs.define("app", ["models/ruleMatchers", "models/ruleActions", "routes/in
         app.use(busboy({ immediate: false }));
         app.use(express.cookieParser("YourCookieKey"));
         app.use(express.session({secret: "YourSessionKey"}));
-        app.use("/superman/",function (req, res, next) {
-            res.setHeader("X-Server","Superman");
+        app.use("/superman/", function (req, res, next) {
+            res.setHeader("X-Server", "Superman");
             return next();
         });
         app.use("/superman/" + packageJson.version, stylus.middleware(path.join(__dirname, 'public')));
@@ -95,7 +95,6 @@ requirejs.define("app", ["models/ruleMatchers", "models/ruleActions", "routes/in
 
         app.listen(app.get("port"), function () {
             console.log("Express server listening on port " + app.get("port"));
-
             setTimeout(function () {
                 console.log("Superman for the rescue!");
                 console.log("Type 'sm' to see my insides.");

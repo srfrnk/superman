@@ -1,12 +1,12 @@
 {
     "name": "superman2",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "private": false,
     "scripts": {
         "start": "node app.js"
     },
     "bin": {
-        "superman": "app.js"
+        "superman": "./app.js"
     },
     "dependencies": {
         "express": "*",
