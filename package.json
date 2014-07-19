@@ -1,36 +1,40 @@
 {
-	"name": "superman2",
-	"version": "0.0.2",
-	"private": false,
-	"scripts": {
-		"start": "node app.js"
-	},
+    "name": "superman2",
+    "version": "0.0.3",
+    "private": false,
+    "scripts": {
+        "start": "node app.js"
+    },
     "bin": {
         "superman": "app.js"
     },
-	"dependencies": {
-		"express": "*",
-		"ejs": "*",
-		"stylus": "*",
-		"mongodb": "*",
-		"passport": "*",
-		"passport-http": "*",
-		"passport-local": "*",
-		"requirejs": "*",
-		"mongoose": "*",
-		"linq": "*",
-		"q": "*",
-		"jeet": "*",
-		"express.io": "*",
-		"tedious": "*",
-		"connect-busboy": "*",
-        "http-proxy":"*"
-	},
-	"engines": {
-		"node": "1.10.x"
-	},
-	"Sili": {
-		"initVersion": "0.0.26",
-		"currentVersion": "0.0.26"
-	}
+    "dependencies": {
+        "express": "*",
+        "ejs": "*",
+        "stylus": "*",
+        "mongodb": "*",
+        "passport": "*",
+        "passport-http": "*",
+        "passport-local": "*",
+        "requirejs": "*",
+        "mongoose": "*",
+        "linq": "*",
+        "q": "*",
+        "jeet": "*",
+        "express.io": "*",
+        "tedious": "*",
+        "connect-busboy": "*",
+        "http-proxy": "*"
+    },
+    "engines": {
+        "node": "1.10.x"
+    },
+    "Sili": {
+        "initVersion": "0.0.26",
+        "currentVersion": "0.0.26"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/srfrnk/superman"
+    }
 }
