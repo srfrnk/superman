@@ -56,25 +56,26 @@ Any changes will take affect immediately - at the next request and on.
 
 ### Rules
 A Rule object takes the following basic properties:
-- active        bool    true to process the rule, false to ignore it.
-- priority      int     determines order for processing rules, lower is first in order.     
-- matcher       string  name of mather to use for the rule. See 'Matchers'
-- action        string  name of action to use for the rule. See 'Actions'
-- description   string  description of rule - will be added to logger output when rule is used.   
-- comment       string  optional text to describe or add info about the rule. will not used by superman. purely for maintenance purposes.
+- 'active' - bool - true to process the rule, false to ignore it.
+- 'priority' - int - determines order for processing rules, lower is first in order.     
+- 'matcher' - string - name of mather to use for the rule. See 'Matchers'
+- 'action' - string - name of action to use for the rule. See 'Actions'
+- 'description' - string - description of rule - will be added to logger output when rule is used.   
+- 'comment' - string - optional text to describe or add info about the rule. will not used by superman. purely for maintenance purposes.
 
 ### Matchers
 A Matcher is a method to determine if a rule applies to a request.
 Matchers are put into the 'sm' ruleMatchers property. They can be added or deleted.
 Matchers are identified within the ruleMatchers object by name.
 Each matcher is a function of the form:
+
 *function(rule , req , proxyInfo)*
 
 Where:
-rule        object  the rule object being matched.
-req         object  the ServerRequest object of the request being matched.
-proxyInfo   object  the 'sm' object containing all superman's configurable content (see 'REPL')
- 
+- 'rule' - object - the rule object being matched.
+- 'req' - object - the ServerRequest object of the request being matched.
+- 'proxyInfo' - object - the 'sm' object containing all superman's configurable content (see 'REPL')
+
 The function must return a boolean, true if the rule is matched by this matcher for this request, false if not.
 
 Matchers may define and use custom properties of the rule object.
@@ -83,29 +84,40 @@ Each matcher may thus require setting of additional properties.
 **Current built-in matchers:**
 
 **"url-string"**  Matches requests where the url contains a string value. 
+
 Custom properties:
-  url   string  a string to be searched within the request url.
+
+  'url' - string - a string to be searched within the request url.
+  
   
 **"url-regex"**  Matches requests where the url matches a regular expression value. 
+
 Custom properties:
-  url   string  a string containing a regex pattern to be matched against the request url.
+
+  'url' - string - a string containing a regex pattern to be matched against the request url.
+
 
 **"match-all"**  Matches all requests. This is usually for a catch-all rule. 
+
 Custom properties:
+
   None!
+  
   
 ### Actions
 An Action is a method that performs actions and determines the response for the rule.
 Actions are put into the 'sm' ruleActions property. They can be added or deleted.
 Actions are identified within the ruleActions object by name.
 Each action is a function of the form:
+
 *function (rule , req , res , proxyInfo)*
 
 Where:
-rule        object  the rule object.
-req         object  the ServerRequest object of the request.
-res         object  the ServerResponse object of the response.
-proxyInfo   object  the 'sm' object containing all superman's configurable content (see 'REPL')
+- 'rule' - object - the rule object.
+- 'req' - object - the ServerRequest object of the request.
+- 'res' - object - the ServerResponse object of the response.
+
+'proxyInfo' - object - the 'sm' object containing all superman's configurable content (see 'REPL')
  
 The function must return a string, which will be put into the log as the description of the action that was performed by the rule.
 
@@ -115,15 +127,23 @@ Each action may thus require setting of additional properties.
 **Current built-in actions:**
 
 **"static-file"**  Respond by streaming a static-file to the client. 
+
 Custom properties:
-  filePath   string  a path to the file to stream, relative to the superman app dir. 
+
+  'filePath' - string - a path to the file to stream, relative to the superman app dir. 
+  
   
 **"localhost"**  Proxy the request to a server on the localhost
+
 Custom properties:
-  localPort   int  the local port to proxy to. defaults to 80. 
+
+  'localPort' - int - the local port to proxy to. defaults to 80. 
+  
   
 **"pass-through"**  Proxy the request to the original target. effectively passes through superman, this is usually the action of the 'catch-all' rule.
+
 Custom properties:
+
   None! 
   
 
