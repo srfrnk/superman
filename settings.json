@@ -1,31 +1,32 @@
 {
-  "rules": [
-    {
-      "active": true,
-      "priority": 1,
-      "matcher": "url-regex",
-      "url": ".*res.cloudinary.com.*",
-      "action": "static-file",
-      "filePath": "public/images/placeholder-img.jpg",
-      "description": "Block cloudinary images",
-      "comment": "Block cloudinary images loading from cloud to prevent overuse while debugging without caches...."
-    },
-    {
-      "active": false,
-      "priority": 1,
-      "matcher": "url-regex",
-      "action": "proxy",
-      "traget": "127.0.0.1",
-      "description": "use local",
-      "comment": ""
-    },
-    {
-      "active": true,
-      "priority": 10000,
-      "matcher": "match-all",
-      "action": "pass-through",
-      "description": "Catch-All rule",
-      "comment": "Don't remove unless you know what your/'e doing!"
-    }
-  ]
+    "rules": [
+        {
+            "active": true,
+            "priority": 1,
+            "matcher": "url-regex",
+            "url": ".*res.cloudinary.com.*",
+            "action": "static-file",
+            "filePath": "public/images/placeholder-img.jpg",
+            "description": "Block cloudinary images",
+            "comment": "Block cloudinary images loading from cloud to prevent overuse while debugging without caches...."
+        },
+        {
+            "active": true,
+            "priority": 1,
+            "matcher": "url-regex",
+            "url": ".*www.destocklet.com.*",
+            "action": "localhost",
+            "localPort": 5000,
+            "description": "use local",
+            "comment": ""
+        },
+        {
+            "active": true,
+            "priority": 10000,
+            "matcher": "match-all",
+            "action": "pass-through",
+            "description": "Catch-All rule",
+            "comment": "Don't remove unless you know what your/'e doing!"
+        }
+    ]
 }

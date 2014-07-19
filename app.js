@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var requirejs = require("requirejs");
 
 requirejs.config({ deps: ["app"]});
@@ -33,6 +35,10 @@ requirejs.define("app", ["models/ruleMatchers", "models/ruleActions", "routes/in
         app.use(busboy({ immediate: false }));
         app.use(express.cookieParser("YourCookieKey"));
         app.use(express.session({secret: "YourSessionKey"}));
+        app.use("/superman/",function (req, res, next) {
+            res.setHeader("X-Server","Superman");
+            return next();
+        });
         app.use("/superman/" + packageJson.version, stylus.middleware(path.join(__dirname, 'public')));
         app.use("/superman/" + packageJson.version, express.static(path.join(__dirname, 'public')));
         app.use("/superman/" + packageJson.version, express.static(path.join(__dirname, 'bower_components')));
@@ -41,8 +47,9 @@ requirejs.define("app", ["models/ruleMatchers", "models/ruleActions", "routes/in
             req.application = app;
             next();
         });
-
         app.use(app.router);
+
+        app.get("/favicon.ico", express.static(path.join(__dirname, 'public')));
 
         app.use("/", proxyLog);
         /*server-middleware:app.use("/",<%=nameCamel%>);<%='\n\t'%>*/
