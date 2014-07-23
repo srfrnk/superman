@@ -2,11 +2,34 @@
 
 ##Node based configurable proxy/router/'anything you want' project.
 
-Most of the code has been written while we were under missile attack from the "Hamas". 
-Tryed to do my best but had to take a break in the morning and build a bomb shelter for my family. 
-Now it's the evening and the bombing may begin so I may be interrupted.
-Please forgive me for any typos or bad code for these reasons.
-I'd be happy to fix if you write me about them.
+If you ...
+1) Use hosts file manager to debug your web application...
+2) Need to replace calls to remote servers from your client to debug your webapps.. e.g. replace a call for an image with a local image....
+3) Want to log all request...
+4) Need anything else a proxy can do...
+
+... Superman can help you.
+ 
+Superman is a NodeJS proxy based on [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) ... Nothing new about that part.
+Superman adds the ability to configure what the proxy performs in three easy ways.
+It is also very easily extensible so that any other needs you may have may be quickly added.
+Superman can be configured in real-time. Most settings will be applicable from the very next server request.
+
+Superman works with rules.
+A rule determines how the proxy should behave in response to a server request.
+Each rule has two important parts - a matcher and an action.
+A rule matcher determines which requests should be handled by the rule.
+A rule action determines what response should be applied when the rule is matched to a request.
+
+Rules are ordered by their priority - higher priority means it's going to be matched first.
+Rules can be active or inactive - inactive rules will not be matched.
+When a rule is matched by a request - no further rules will be matched, instead the rule is applied.
+A rule that is applied to a request will have it's action performed.
+It is up to the action to have the response handled correctly.
+  
+There are built-in matchers and built-in actions but it's very easy to construct new matchers and actions, add them and use them.
+Matchers and actions use generic and specific parameters within the rule to effect their performance.
+See the API below for more info.
 
 ### Documentation
 
@@ -17,6 +40,7 @@ $ npm install -g superman2
 $ superman
 
 Set your browser proxy settings to use localhost:#### as proxy for all calls except 'localhost'. #### being the proxy port superman is setup for. (default is 8000)
+Use the browser to configure superman by going to http://localhost:####/superman
 
 Three ways to configure Superman:
 * Settings file
@@ -57,7 +81,7 @@ Any changes will take affect immediately - at the next request and on.
 ### Rules
 A Rule object takes the following basic properties:
 - 'active' - bool - true to process the rule, false to ignore it.
-- 'priority' - int - determines order for processing rules, lower is first in order.     
+- 'priority' - int - determines order for processing rules, higher is first in order.     
 - 'matcher' - string - name of mather to use for the rule. See 'Matchers'
 - 'action' - string - name of action to use for the rule. See 'Actions'
 - 'description' - string - description of rule - will be added to logger output when rule is used.   

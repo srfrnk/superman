@@ -2,7 +2,7 @@
     "rules": [
         {
             "active": true,
-            "priority": 1,
+            "priority": 10,
             "matcher": "url-regex",
             "url": ".*res.cloudinary.com.*",
             "action": "static-file",
@@ -12,7 +12,7 @@
         },
         {
             "active": true,
-            "priority": 1,
+            "priority": 10,
             "matcher": "url-regex",
             "url": ".*www.destocklet.com.*",
             "action": "localhost",
@@ -22,7 +22,7 @@
         },
         {
             "active": true,
-            "priority": 10000,
+            "priority": 1,
             "matcher": "match-all",
             "action": "pass-through",
             "description": "Catch-All rule",
